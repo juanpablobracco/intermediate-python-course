@@ -1,0 +1,28 @@
+import string
+handler = open("arc.txt")#introdusca aqui el nombre del archivo a evaluar
+read = handler.read()
+# lector = read(handler)
+counts = dict()
+
+#Purga de palabras, y contador de cantidad
+for word in read:
+    word = word.translate(word.maketrans('', '', string.punctuation))
+    word = word.rstrip()
+    word = word.lower()
+    word = word.split()
+    for letra in word:
+        if letra not in counts:
+            counts[letra] = 1
+        else:
+            counts[letra] += 1
+# print("CONTADOR", counts)
+
+lst = list()
+for clave, valor in counts.items():
+    lst.append((valor, clave))
+
+lst.sort(reverse=True)
+
+print("letters HISTOGRAM Español:")
+for clave,valor in lst[:23]:
+     print(clave, valor)
